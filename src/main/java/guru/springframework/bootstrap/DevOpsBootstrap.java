@@ -6,6 +6,7 @@ import guru.springframework.domain.ProductCategory;
 import guru.springframework.repositories.AuthorRepository;
 import guru.springframework.repositories.ProductCategoryRepository;
 import guru.springframework.repositories.ProductRepository;
+import org.apache.commons.collections4.IteratorUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -40,143 +41,86 @@ public class DevOpsBootstrap implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Author jt = new Author();
-        jt.setFirstName("John");
-        jt.setLastName("Thompson");
-        jt.setId(1);
-        jt.setImage("instructor_jt.jpg");
 
-        jt = authorRepository.save(jt);
+        if(IteratorUtils.toList(authorRepository.findAll().iterator()).size() == 0) {
 
-        ProductCategory springIntroCat = new ProductCategory();
-        springIntroCat.setId(1);
-        springIntroCat.setCategory("Spring Introduction");
+            Author jt = new Author();
+            jt.setFirstName("Dominik");
+            jt.setLastName("Jurasz");
+            jt.setId(1);
+            jt.setImage("avatar.jpg");
 
-        springIntroCat = productCategoryRepository.save(springIntroCat);
+            jt = authorRepository.save(jt);
 
-        ProductCategory springCoreCat = new ProductCategory();
-        springCoreCat.setId(2);
-        springCoreCat.setCategory("Spring Core");
+            ProductCategory instruments = new ProductCategory();
+            instruments.setId(1);
+            instruments.setCategory("Instruments");
+            instruments = productCategoryRepository.save(instruments);
 
-        springCoreCat = productCategoryRepository.save(springCoreCat);
+            ProductCategory disks = new ProductCategory();
+            disks.setId(2);
+            disks.setCategory("Disks");
 
-        ProductCategory springBootCat = new ProductCategory();
-        springBootCat.setId(3);
-        springBootCat.setCategory("Spring Boot");
+            disks = productCategoryRepository.save(disks);
 
-        springBootCat = productCategoryRepository.save(springBootCat);
+            ProductCategory accesories = new ProductCategory();
+            accesories.setId(3);
+            accesories.setCategory("Accesory");
 
-        ProductCategory thymeleafCat = new ProductCategory();
-        thymeleafCat.setId(4);
-        thymeleafCat.setCategory("Thymeleaf");
+            accesories = productCategoryRepository.save(accesories);
 
-        thymeleafCat = productCategoryRepository.save(thymeleafCat);
+            ProductCategory speakers = new ProductCategory();
+            speakers.setId(4);
+            speakers.setCategory("Speakers");
 
-        ProductCategory geapCat = new ProductCategory();
-        geapCat.setId(5);
-        geapCat.setCategory("G.E.A.P");
+            speakers = productCategoryRepository.save(speakers);
 
-        geapCat = productCategoryRepository.save(geapCat);
+            ProductCategory tickets = new ProductCategory();
+            tickets.setId(5);
+            tickets.setCategory("Tickets");
 
-        Product springIntro = new Product();
-        springIntro.setId(1);
-        springIntro.setCourseName("Introduction to Spring");
-        springIntro.setCourseSubtitle("Start Learning Spring!");
-        springIntro.setAuthor(jt);
-        springIntro.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springIntro.setPrice(new BigDecimal("0"));
-        springIntro.setImageUrl("SpringIntroThumb.png");
-        springIntro.getProductCategories().add(springIntroCat);
-        springIntro.getProductCategories().add(springBootCat);
+            tickets = productCategoryRepository.save(tickets);
 
-        springIntro = productRepository.save(springIntro);
+            Product stratocaster = new Product();
+            stratocaster.setId(1);
+            stratocaster.setProductName("Fender Stratocaster HSH");
+            stratocaster.setAuthor(jt);
+            stratocaster.setProductDescription("The Standard Stratocaster HSH takes the already-blistering Standard Stratocaster HH model and supercharges it even more with the addition of a Standard Stratocaster single-coil pickup between two ferocious Blacktop open-coil humbucking pickups with chrome/black bobbins and a coil-splitting push/pull switch built into the second tone knob that leaves the outside coils active. That means even more sonic versatility in a stylishly distinctive Strat® model for modern guitarists who want heavy and aggressive tone.");
 
-        Product springCoreUltimate = new Product();
-        springCoreUltimate.setId(2);
-        springCoreUltimate.setCourseName("Spring Core Ultimate");
-        springCoreUltimate.setCourseSubtitle("Ultimate Bundle of Spring Core!");
-        springCoreUltimate.setAuthor(jt);
-        springCoreUltimate.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCoreUltimate.setPrice(new BigDecimal("199"));
-        springCoreUltimate.setImageUrl("SpringCoreUltimateThumb.png");
-        springCoreUltimate.getProductCategories().add(springCoreCat);
-        springCoreUltimate.getProductCategories().add(springBootCat);
+            stratocaster.setPrice(new BigDecimal("3000"));
+            stratocaster.setImageUrl("fender.jpg");
+            stratocaster.getProductCategories().add(instruments);
+            stratocaster.getProductCategories().add(accesories);
 
-        springCoreUltimate = productRepository.save(springCoreUltimate);
+            stratocaster = productRepository.save(stratocaster);
 
-        Product thymeleaf = new Product();
-        thymeleaf.setId(3);
-        thymeleaf.setCourseName("Thymeleaf");
-        thymeleaf.setCourseSubtitle("Thymeleaf and Spring!");
-        thymeleaf.setAuthor(jt);
-        thymeleaf.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        thymeleaf.setPrice(new BigDecimal("199"));
-        thymeleaf.setImageUrl("ThymeleafThumb.png");
-        thymeleaf.getProductCategories().add(thymeleafCat);
+            Product telecaster = new Product();
+            telecaster.setId(2);
+            telecaster.setProductName("Standard Telecaster HH");
+            telecaster.setAuthor(jt);
+            telecaster.setProductDescription("For modern guitarists who want heavy and aggressive tone from Fender's original workhorse instrument, the Standard Telecaster HH deliver massive high-gain power from two Blacktop open-coil humbucking pickups with chrome/black bobbins and black bezels. Stylish and supercharged, it's built to match the intensity of any playing style, with other distinctive features including a coil-splitting push/pull switch built into the tone knob that leaves the outside coils active. A versatile performer with a full-throated voice.\n" +
+                    "\n");
+            telecaster.setPrice(new BigDecimal("4500"));
+            telecaster.setImageUrl("telecaster.jpg");
+            telecaster.getProductCategories().add(instruments);
+            telecaster.getProductCategories().add(accesories);
 
-        thymeleaf = productRepository.save(thymeleaf);
+            telecaster = productRepository.save(telecaster);
 
-        Product springCore = new Product();
-        springCore.setId(4);
-        springCore.setCourseName("Spring Core");
-        springCore.setCourseSubtitle("Spring Core - mastering Spring!");
-        springCore.setAuthor(jt);
-        springCore.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCore.setPrice(new BigDecimal("199"));
-        springCore.setImageUrl("SpringCoreThumb.png");
-        springCore.getProductCategories().add(springCoreCat);
-        springCore.getProductCategories().add(springBootCat);
+            Product mustangGt = new Product();
+            mustangGt.setId(3);
+            mustangGt.setProductName("Mustang GT 40");
+            mustangGt.setAuthor(jt);
+            mustangGt.setProductDescription("How can a modern legend like the Mustang digital amplifiers be improved? Simple—we do it again, bigger and better with the Mustang GT 40. We take seven decades' worth of experience crafting inspirational tools and use it to add new (and better) amp and effects models while making it easier to use all of this without sacrificing one iota of power. We make it easy to control a studio's worth of authentic amp and effects models with one finger via Bluetooth and the exclusive Fender Tone app.\n" +
+                    "\n" +
+                    "We invent the world's first WiFi-equipped guitar amplifier, making it easy for you to download the latest updates, access Fender artist-created presets, and connect directly with a community of other creative players and music makers like yourself.\n" +
+                    "\n" +
+                    "We create the Mustang GT 40 digital amplifier.");
+            mustangGt.setPrice(new BigDecimal("700"));
+            mustangGt.setImageUrl("mustang.jpg");
+            mustangGt.getProductCategories().add(speakers);
 
-        springCore = productRepository.save(springCore);
-
-        Product springCoreAdv = new Product();
-        springCoreAdv.setId(5);
-        springCoreAdv.setCourseName("Spring Core Advanced");
-        springCoreAdv.setCourseSubtitle("Advanced Spring Core!");
-        springCoreAdv.setAuthor(jt);
-        springCoreAdv.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCoreAdv.setPrice(new BigDecimal("199"));
-        springCoreAdv.setImageUrl("SpringCoreAdvancedThumb.png");
-        springCoreAdv.getProductCategories().add(springCoreCat);
-        springCoreAdv.getProductCategories().add(springBootCat);
-
-        springCoreAdv = productRepository.save(springCoreAdv);
-
-        Product springCoreDevOps = new Product();
-        springCoreDevOps.setId(6);
-        springCoreDevOps.setCourseName("Spring Core Dev-Ops");
-        springCoreDevOps.setCourseSubtitle("Deploying Spring in the Enterprise and the cloud!");
-        springCoreDevOps.setAuthor(jt);
-        springCoreDevOps.setCourseDescription("Why would you want to learn about the Spring Framework? Simple, Spring is the most widely used framework in the enterprise today. Major companies all over the world are hiring programmers who know the Spring Framework.\n" +
-                "\n" +
-                "My Introduction Spring Framework Tutorial is designed to give you an introduction to the Spring Framework. This course is written for beginners. Ideally before taking the course, you should already have a foundation with the Java programming language. You don't need to be an expert in Java, but you should the basics of Object Oriented Programming with Java.\n" +
-                "\n" +
-                "You will learn what Dependency Injection is, and how Spring uses Inversion of Control to leverage Dependency Injection. Next in my course, I will walk you step by step through building your very first Spring Framework application. I'll show you hot to use the Spring Initializer and Spring Boot to jumpstart your Spring Framework project. Ideally, you can follow along and create your own Spring project. I know it can be frustrating to follow along in a course and run into errors. So don't worry, I have the complete source code examples in Git for you to checkout and use.");
-        springCoreDevOps.setPrice(new BigDecimal("199"));
-        springCoreDevOps.setImageUrl("SpringCoreDevOpsThumb.png");
-        springCoreDevOps.getProductCategories().add(springCoreCat);
-        springCoreDevOps.getProductCategories().add(springBootCat);
-
-        springCoreDevOps = productRepository.save(springCoreDevOps);
+            mustangGt = productRepository.save(mustangGt);
+        }
     }
 }

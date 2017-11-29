@@ -5,7 +5,7 @@
 
 	<groupId>guru.springframework</groupId>
 	<artifactId>spring-core-devops</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<packaging>jar</packaging>
 
 	<name>Spring Core DevOps</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.4.RELEASE</version>
+		<version>1.3.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -52,10 +52,18 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!--MySQL Dep-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>1.6</version>
 		</dependency>
 
 		<!--JMS Dep-->
@@ -84,6 +92,11 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>f3cb70281fb2-releases</name>
+			<url>http://18.217.168.144:8081/artifactory/libs-release-local</url>
+		</repository>
+	</distributionManagement>
 </project>
