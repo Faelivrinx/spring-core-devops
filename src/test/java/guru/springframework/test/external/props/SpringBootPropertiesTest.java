@@ -2,6 +2,7 @@ package guru.springframework.test.external.props;
 
 import guru.springframework.SpringCoreDevOpsApplication;
 import guru.springframework.test.jms.FakeJmsBroker;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 @SpringApplicationConfiguration(SpringCoreDevOpsApplication.class)
 @WebIntegrationTest
 @TestPropertySource("/application.properties")
+@Ignore
 public class SpringBootPropertiesTest {
     @Autowired
     FakeJmsBroker fakeJmsBroker;

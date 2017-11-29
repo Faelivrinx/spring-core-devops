@@ -20,11 +20,10 @@ public class Product {
 
     private Date dateCreated;
     private Date lastUpdated;
-    private String courseName;
-    private String courseSubtitle;
+    private String productName;
 
     @Column(length = 2000)
-    private String courseDescription;
+    private String productDescription;
 
     @ManyToOne
     private Author author;
@@ -44,28 +43,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getCourseSubtitle() {
-        return courseSubtitle;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setCourseSubtitle(String courseSubtitle) {
-        this.courseSubtitle = courseSubtitle;
-    }
-
-    public String getCourseDescription() {
-        return courseDescription;
-    }
-
-    public void setCourseDescription(String courseDescription) {
-        this.courseDescription = courseDescription;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public Author getAuthor() {
@@ -120,7 +111,7 @@ public class Product {
     @PrePersist
     public void updateTimeStamps() {
         lastUpdated = new Date();
-        if (dateCreated==null) {
+        if (dateCreated == null) {
             dateCreated = new Date();
         }
     }

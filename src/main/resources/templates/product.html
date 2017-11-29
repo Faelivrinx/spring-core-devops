@@ -14,7 +14,7 @@
 
     <style th:remove="all">
         .jumbotron {
-            background: url('../static/images/SpringCoreJumbotron.jpg') no-repeat center center;
+            background: url('../static/images/music.jpg') no-repeat center center;
             height: 350px;
             color: white;
             text-shadow: #444 0 1px 1px;
@@ -143,14 +143,14 @@
 <div class="container" style="height: 100vh;">
     <div class="row">
         <div class="col-md-12">
-            <h1 th:text="${product.courseName}">Spring Framework Guru - Course Name</h1>
+            <h1 th:text="${product.productName}">Spring Framework Guru - Course Name</h1>
         </div>
     </div>
     <div class="row course-listing">
         <div class="col-md-6">
            <div class="row">
-               <div class="col-md-12">
-                   <img src="../static/images/SpringIntroThumb.png"
+               <div class="col-md-6">
+                   <img
                         th:src="@{'/images/'+${product.imageUrl}}"
                         class="center-block"/>
                </div>
@@ -158,7 +158,7 @@
             <div class="row course-listing-extra-info col-xs-12">
                 <div class="col-xs-8">
                     <img align="left" alt="John Thompson"
-                         src="../static/images/instructor_jt.jpg"
+                         src="../static/images/avatar.jpg"
                          th:src="@{'/images/'+${product.author.image}}"
                          class="img-circle"/>
                     <div class="small course-author-name" th:text="${(product.author.firstName)
@@ -183,8 +183,7 @@
         </div>
         <div class="col-md-6">
              <div>
-                 <h2 th:text="${product.courseSubtitle}">Course Title</h2>
-                 <p th:text="${product.courseDescription}">Adipiscing magna vestibulum fringilla tristique ad a primis ante mi inceptos condimentum curabitur
+                 <p th:text="${product.productDescription}">Adipiscing magna vestibulum fringilla tristique ad a primis ante mi inceptos condimentum curabitur
                      curabitur eu sed nullam ridiculus nunc montes id nostra dui inceptos scelerisque posuere ipsum mus.
                      A scelerisque libero viverra eu condimentum mollis suscipit mi consectetur semper dis ipsum nisi
                      in nullam aliquet iaculis in eros euismod bibendum. Adipiscing volutpat fringilla bibendum duis a
