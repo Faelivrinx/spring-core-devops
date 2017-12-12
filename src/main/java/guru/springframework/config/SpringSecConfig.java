@@ -23,10 +23,11 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/", "/index/**", "/product/**", "/checkout", "/docheckout").permitAll()
+        http.authorizeRequests().antMatchers("/", "/index/**", "/product/**").permitAll()
                 .and().authorizeRequests().antMatchers("/login","logout").permitAll()
                 .and().authorizeRequests().antMatchers("/static/css/**","/js/**", "/images/**", "/**/favicon.ico").permitAll()
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
+                .and().authorizeRequests().antMatchers("/checkout", "/docheckout").authenticated()
                 .and().logout()
                         .deleteCookies("remove")
                         .invalidateHttpSession(true)

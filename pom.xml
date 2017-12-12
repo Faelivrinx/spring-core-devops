@@ -96,7 +96,7 @@
 		<repository>
 			<id>central</id>
 			<name>f3cb70281fb2-releases</name>
-			<url>http://18.217.168.144:8081/artifactory/libs-release-local</url>
+			<url>http://13.58.40.86:8081/artifactory/libs-release-local</url>
 		</repository>
 	</distributionManagement>
 </project>

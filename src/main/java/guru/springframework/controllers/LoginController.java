@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
@@ -29,7 +30,7 @@ public class LoginController {
         return "logout-success";
     }
 
-  //  @RequestMapping(value = "/dologin", method = RequestMethod.POST)
+    @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     public String doLogin(@Valid LoginCommand loginCommand, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
